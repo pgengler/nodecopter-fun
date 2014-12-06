@@ -1,0 +1,16 @@
+{
+  "name": "nodecopter",
+  "version": "0.0.0",
+  "private": true,
+  "repository": "",
+  "engines": {
+    "node": ">= 0.10.0"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "ar-drone": "^0.3.3",
+    "express": "^4.10.4",
+    "express-generator": "^4.9.0"
+  }
+}

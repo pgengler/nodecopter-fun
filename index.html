@@ -6,12 +6,20 @@
 		<script>
 		  var socket = io();
 		</script>
+		<style>
+			div.commands { width: 49vw; display: inline-block; }
+			div.frame { width: 49vw; display: inline-block; }
+		</style>
 	</head>
 	<body>
-		Copter Control
-		<button class='takeoff'>Takeoff</button>
-		<button class='land'>Land</button>
-		<img class='frame'>
+		<h1>Copter Control</h1>
+		<div class='commands'>
+			<textarea class='commands' rows='15' cols='45'></textarea>
+			<button class='run'>Run</button>
+		</div>
+		<div class='frame'>
+			<img class='frame'>
+		</div>
 	</body>
 	<script src="/jquery.js"></script>
 	<script src="/main.js"></script>

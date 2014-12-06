@@ -9,12 +9,31 @@ $('button.land').click(function() {
 
 $('button.run').click(function() {
 	var commands = $('textarea.commands').val().split(/\n/);
-	runCommands(commands);
+	runCommands(preprocessCommands(commands));
 });
 
 socket.on('frame', function(data) {
 	$('img.frame').prop('src', 'data:image/png;base64,' + data);
 });
+
+function preprocessCommands(commands)
+{
+	var newCommands = [ ];
+	commands.forEach(function(command) {
+		var matches = command.match(/^(.+?)\s+(.+?)\s+(.+)/);
+		if (matches) {
+			var verb = matches[1];
+			var speed = matches[2];
+			var duration = matches[3];
+			newCommands.push(verb + " " + speed);
+			newCommands.push("sleep " + duration);
+			newCommands.push("stop");
+		} else {
+			newCommands.push(command);
+		}
+	});
+	return newCommands;
+}
 
 function runCommands(commands)
 {
@@ -28,7 +47,6 @@ function runCommands(commands)
 			runCommands(commands);
 		}, delay);
 	} else {
-		runCommand(command);
 		if (command == "takeoff") {
 			socket.on('takeoff:complete', function() {
 				runCommands(commands);

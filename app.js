@@ -10,6 +10,7 @@ pngStream.on('data', function(data) {
   var str = data.toString('base64');
   io.emit('frame', str);
 });
+/*
 var firstTime = true;
 client.on('navdata', function(navdata) {
   if (firstTime) {
@@ -17,6 +18,7 @@ client.on('navdata', function(navdata) {
     firstTime = false;
   }
 });
+*/
 
 app.get('/', function(req, res){
   res.sendFile(__dirname + '/index.html');

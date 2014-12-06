@@ -5,11 +5,7 @@ var io = require('socket.io')(http);
 var arDrone = require('ar-drone');
 
 var client  = arDrone.createClient();
-var pngStream = client.getPngStream();
-pngStream.on('data', function(data) {
-  var str = data.toString('base64');
-  io.emit('frame', str);
-});
+require('ar-drone-png-stream')(client, { port: 3501 });
 /*
 var firstTime = true;
 client.on('navdata', function(navdata) {

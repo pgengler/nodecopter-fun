@@ -12,10 +12,6 @@ $('button.run').click(function() {
 	runCommands(preprocessCommands(commands));
 });
 
-socket.on('frame', function(data) {
-	$('img.frame').prop('src', 'data:image/png;base64,' + data);
-});
-
 function preprocessCommands(commands)
 {
 	var newCommands = [ ];
